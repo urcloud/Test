@@ -1,32 +1,39 @@
 import java.util.Scanner;
 
 public class Main {
-
-    // 주어진 숫자가 팰린드롬인지 확인하는 함수
-    static boolean isPalindrome(int num) {
-        String str = Integer.toString(num); // 숫자를 문자열로 변환
-        int len = str.length();
-        for (int i = 0; i < len / 2; i++) {
-            if (str.charAt(i) != str.charAt(len - 1 - i)) {
-                return false; // 대칭되는 문자가 다를 경우 팰린드롬이 아님
-            }
-        }
-        return true; // 모든 대칭되는 문자가 같을 경우 팰린드롬임
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        
         while (true) {
-            int num = scanner.nextInt();
-            if (num == 0) break; // 입력이 0이면 종료
-            if (isPalindrome(num)) {
+            String input = scanner.nextLine();
+            
+            // 입력이 0이면 종료
+            if (input.equals("0")) {
+                break;
+            }
+            
+            // 주어진 수가 팰린드롬수인지 판별
+            if (isPalindrome(input)) {
                 System.out.println("yes");
             } else {
                 System.out.println("no");
             }
         }
-
+        
         scanner.close();
+    }
+    
+    // 주어진 문자열이 팰린드롬인지 확인하는 메서드
+    public static boolean isPalindrome(String str) {
+        int length = str.length();
+        
+        // 문자열을 앞뒤로 비교하여 팰린드롬 여부 확인
+        for (int i = 0; i < length / 2; i++) {
+            if (str.charAt(i) != str.charAt(length - 1 - i)) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 }
