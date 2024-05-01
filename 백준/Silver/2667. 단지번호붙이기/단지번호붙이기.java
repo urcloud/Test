@@ -1,6 +1,8 @@
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
@@ -9,54 +11,60 @@ public class Main {
       {-1,0}, {1,0}, {0,-1}, {0, 1}
   };
 
-  static int size = 0;
-
   public static void main(String[] args) {
     //input
-
     Scanner scanner = new Scanner(System.in);
     int N = Integer.valueOf(scanner.nextLine());
 
     int[][] map = new int[N][N];
     boolean[][] visited = new boolean[N][N];
 
-    for(int i = 0; i<N; i++) {
+    for (int i = 0; i < N; i++) {
       String s = scanner.nextLine();
-      for(int j = 0; j<N; j++) {
+      for (int j = 0; j < N; j++) {
         map[i][j] = s.charAt(j) - '0';
       }
     }
 
     List<Integer> result = new ArrayList<>();
 
-    for(int i = 0; i<N; i++) {
-      for(int j = 0; j<N; j++) {
+    for (int i = 0; i < N; i++) {
+      for (int j = 0; j < N; j++) {
         if (map[i][j] == 1 && !visited[i][j]) {
-          size = 1;
-
-          dfs(N, map, visited, i, j);
-          result.add(size);
+          result.add(bfs(N, map, visited, i, j));
         }
       }
     }
 
     System.out.println(result.size());
+    
     Collections.sort(result);
     result.forEach(i -> System.out.println(i));
   }
 
-  public static void dfs(int N, int[][] map, boolean[][] visited, int x, int y) {
+  public static int bfs(int N, int[][] map, boolean[][] visited, int x, int y) {
+    int size = 1;
+
+    Queue<int[]> queue = new LinkedList<>();
+    queue.add(new int[]{x, y});
     visited[x][y] = true;
 
-    for(int i = 0; i<direction.length; i++) {
-      int nX = x + direction[i][0];
-      int nY = y + direction[i][1];
+    while (!queue.isEmpty()) {
+      int[] coordinate = queue.poll();
 
-      if (nX >=0 && nY>=0 && nX<N && nY<N
-          && map[nX][nY]==1 && !visited[nX][nY]) {
-        size +=1;
-        dfs(N, map, visited, nX, nY);
+      for (int i = 0; i < 4; i++) {
+        int nX = coordinate[0] + direction[i][0];
+        int nY = coordinate[1] + direction[i][1];
+
+        if (nX >= 0 && nY >= 0 && nX < N && nY < N
+            && map[nX][nY] == 1 && !visited[nX][nY]) {
+          size++;
+          visited[nX][nY] = true;
+          queue.add(new int[]{nX, nY});
+        }
       }
     }
+
+    return size;
   }
 }
