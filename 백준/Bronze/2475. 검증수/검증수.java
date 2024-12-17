@@ -1,25 +1,23 @@
+import static java.lang.Math.pow;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        // 고유번호의 처음 5자리 숫자를 입력받음
-        int[] numbers = new int[5];
-        for (int i = 0; i < 5; i++) {
-            numbers[i] = scanner.nextInt();
-        }
-        
-        // 검증수 계산
-        int verification = 0;
-        for (int i = 0; i < 5; i++) {
-            verification += numbers[i] * numbers[i];
-        }
-        verification %= 10;
-        
-        // 결과 출력
-        System.out.println(verification);
-        
-        scanner.close();
-    }
+  public static void main(String[] args) {
+
+    Scanner scanner = new Scanner(System.in);
+
+    int a = scanner.nextInt();
+    int b = scanner.nextInt();
+    int c = scanner.nextInt();
+    int d = scanner.nextInt();
+    int e = scanner.nextInt();
+
+    int sum = (int) (pow(a,2) + pow(b,2) + pow(c,2) + pow(d,2) + pow(e,2));
+    int su = sum % 10;
+
+    System.out.println(su);
+
+    scanner.close();
+
+  }
 }
