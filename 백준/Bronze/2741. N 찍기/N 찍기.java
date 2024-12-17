@@ -1,15 +1,17 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+  public static void main(String[] args) {
 
-        // 자연수 N 입력
-        int N = scanner.nextInt();
+    Scanner scanner = new Scanner(System.in);
 
-        // 1부터 N까지 출력
-        for (int i = 1; i <= N; i++) {
-            System.out.println(i);
-        }
+    int N = scanner.nextInt();
+
+    for (int i = 1; i < N+1; i++) {
+      System.out.println(i);
     }
+
+    scanner.close();
+
+  }
 }
