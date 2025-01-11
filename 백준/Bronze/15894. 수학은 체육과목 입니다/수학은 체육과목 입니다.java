@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        long n = scanner.nextLong();
+        int n = scanner.nextInt();
         
-        System.out.println(n*3 + n);
+        System.out.println(4l*n);
         
         scanner.close();
     }
