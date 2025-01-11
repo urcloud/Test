@@ -1,15 +1,12 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        int A = scanner.nextInt();
-        int B = scanner.nextInt();
-        int C = (A+B) * (A-B);
-        
-        System.out.println(C);
-        
-        scanner.close();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        long a = Long.parseLong(st.nextToken());
+        long b = Long.parseLong(st.nextToken());
+        System.out.print((a+b) * (a-b));
     }
 }
