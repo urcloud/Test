@@ -5,19 +5,16 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         
         int N = scanner.nextInt();
-        scanner.nextLine();
-        
         Set<String> inCompany = new TreeSet<>(Collections.reverseOrder());
         
         for(int i=0; i<N; i++) {
-            String log = scanner.nextLine();
-            String[] sp = log.split(" ");
-            String name = sp[0];
-            String action = sp[1];
+            String name, log;
+            name = scanner.next();
+            log = scanner.next();
             
-            if (action.equals("enter")) {
+            if ("enter".equals(log)) {
                 inCompany.add(name);
-            } else if (action.equals("leave")) {
+            } else if ("leave".equals(log)) {
                 inCompany.remove(name);
             }
         }
