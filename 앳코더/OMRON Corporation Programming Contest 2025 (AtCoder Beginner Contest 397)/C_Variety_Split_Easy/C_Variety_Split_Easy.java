@@ -34,4 +34,3 @@ public class C_Variety_Split_Easy {
         scanner.close();
     }
 }
-​
