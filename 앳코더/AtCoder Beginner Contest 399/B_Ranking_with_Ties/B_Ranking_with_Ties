@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class B_Ranking_with_Ties {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+
+        Map<Integer, Integer> countMap = new HashMap<>(), rankMap = new HashMap<>();
+        List<Integer> num = new ArrayList<>();
+        
+        for (int i = 0; i < N; i++) {
+            int score = scanner.nextInt();
+            num.add(score);
+            countMap.put(score, countMap.getOrDefault(score, 0) + 1);
+        }
+        scanner.close();
+        
+        List<Integer> sortedScores = new ArrayList<>(countMap.keySet());
+        sortedScores.sort(Collections.reverseOrder());
+        
+        int rank = 1;
+        for (int score : sortedScores) {
+            rankMap.put(score, rank);
+            rank += countMap.get(score);
+        }
+        
+        for (int score : num) {
+            System.out.println(rankMap.get(score));
+        }
+    }
+}
